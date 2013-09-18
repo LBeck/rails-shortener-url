@@ -1,0 +1,20 @@
+<h1> Welcome! </h1>
+<h3> Give me your url and I will shortener for you! </h3>
+
+<%= form_for @url do |f| %>  <!-- urls_path is a helper. it will point the form to the create action of the current controller, the UrlsController, and will send a POST request to that route  -->
+  <p>
+    <%= f.label :long_url %><br>
+    <%= f.text_field :long_url %>
+  </p>
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+<% @urls.each do |url| %>
+  <%= url.inspect %><br>
+  <%= link_to url.short_url, "http://#{url.long_url}" %>
+  <!-- NOTE: urls with http:// allready in there will fuck up -->
+  <hr>
+<% end %>
